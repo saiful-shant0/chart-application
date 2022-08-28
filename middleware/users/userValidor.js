@@ -5,7 +5,6 @@ const { unlink } = require("fs");
 
 // internal imports
 const User = require("../../models/people");
-
 // add user
 const addUserValidators = [
   check("name")

@@ -8,19 +8,23 @@ const {
   addUser,
   removeUser,
 } = require("../controller/usersController");
+const { checkLogin } = require("../middleware/common/checkLogIn");
 const deceoretHtmlResponse = require("../middleware/common/decoretHtmlResponse");
 const avaterUpload = require("../middleware/users/avaterUpload");
 const {
   addUserValidators,
   addUserValidationHandler,
 } = require("../middleware/users/userValidor");
+
 const router = express.Router();
 
 //login page
-router.get("/", deceoretHtmlResponse("Users"), getUsers);
+router.get("/", deceoretHtmlResponse("Users"), checkLogin, getUsers);
 
+// add user
 router.post(
   "/",
+  checkLogin,
   avaterUpload,
   addUserValidators,
   addUserValidationHandler,
